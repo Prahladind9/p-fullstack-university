@@ -1,0 +1,82 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>KnowLad</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    ******************************** Login Screen
+    ********************************
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <mat-spinner *ngIf="isLoading" class="center"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="submitHandler()"
+    [formGroup]="loginFormGroup"
+  >
+    <div class="centre">
+      <mat-card
+        class="login-card mat-elevation-z5"
+        fxLayout="column"
+        fxLayoutGap="2%"
+      >
+        <div>
+          <!-- Appearance: Outline -->
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>User Name</mat-label>
+            <input
+              formControlName="userName"
+              matInput
+              name="userName"
+              placeholder="Please enter the username"
+              type="text"
+            />
+            <mat-hint>Enter user name</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <!-- Appearance: Outline -->
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Password</mat-label>
+
+            <input
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+              matInput
+              name="password"
+              placeholder="Password"
+              required
+            />
+
+            <button
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+              mat-icon-button
+              matSuffix
+              type="button"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-hint>Password</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="pull-right">
+          <button
+            [disabled]="!loginForm.valid"
+            color="primary"
+            mat-raised-button
+            type="submit"
+          >
+            Login
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="resultsStepper">
+
+  <mat-horizontal-stepper #stepper [linear]="isLinear">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Class & Section</ng-template>
+        <mat-form-field>
+          <mat-label>Select Class & Section</mat-label>
+          <mat-select [formControl]="studentStandard" name="section" required>
+            <mat-option *ngFor="let section of sections" [value]="section.value">
+              {{section.viewValue}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperNext
+                  matTooltip="Select Exam Type">Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Exam</ng-template>
+        <mat-form-field>
+          <mat-label>Exam</mat-label>
+
+          <mat-select [formControl]="examTypeControl" name="exam" required>
+            <mat-option *ngFor="let exam of examTypes" [value]="exam.value">
+              {{exam.viewValue}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperPrevious
+                  matTooltip="Modify Year">Back
+          </button>
+          <button mat-raised-button matStepperNext (click)="getStudentsList()">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Student</ng-template>
+        <mat-form-field>
+          <mat-label>Select Student</mat-label>
+          <mat-select [formControl]="studentControl" name="studentDetailsModel" required>
+            <mat-option *ngFor="let studentDetailsModel of studentDetailsModelList"
+                        [value]="studentDetailsModel.studentId">
+              {{studentDetailsModel.studentName}}
+            </mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <div>
+          <button mat-raised-button (click)="showResultsFlag()">Input Results</button>
+          <button mat-raised-button (click)="stepper.reset(); showResultsFlag()">Reset</button>
+        </div>
+      </form>
+
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+<div *ngIf="formHide">
+  <form
+    #resultForm="ngForm"
+    (ngSubmit)="uploadResult()"
+    [formGroup]="resultFormGroup"
+  >
+    <div class="centre">
+      <mat-card
+        class="mat-elevation-z5" fxLayout="column" fxLayoutGap="2%">
+        <div>
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Telugu Marks</mat-label>
+            <input formControlName="firstLanguage"
+              matInput name="teluguMarks" type="number"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Hindi Marks</mat-label>
+            <input formControlName="secondLanguage"
+                   matInput name="hindiMarks" type="number"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>English Marks</mat-label>
+            <input formControlName="thirdLanguage"
+                   matInput name="englishMarks" type="number"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Maths Marks</mat-label>
+            <input formControlName="maths"
+                   matInput name="mathsMarks" type="number"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Science Marks</mat-label>
+            <input formControlName="science"
+                   matInput name="scienceMarks" type="number"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlexFill>
+            <mat-label>Social Marks</mat-label>
+            <input formControlName="social"
+                   matInput name="socialMarks" type="number"/>
+          </mat-form-field>
+
+        </div>
+
+        <div class="pull-right">
+          <button
+            [disabled]="!resultForm.valid"
+            color="primary" mat-raised-button type="submit">
+            Upload Results
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </form>
+</div>
+

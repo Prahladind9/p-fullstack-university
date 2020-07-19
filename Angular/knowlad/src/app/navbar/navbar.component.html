@@ -1,0 +1,50 @@
+<div>
+  <mat-drawer-container autosize class="sidenav-container">
+    <mat-drawer #drawer mode="push" class="sidenav-drawer">
+      <h2 class="knowlad-title">KNOWLAD</h2>
+      <div *ngFor="let module of modulesList">
+        <button
+          class="sidenav-button"
+          [routerLink]="'/' + module.moduleRoutePath"
+          color="primary"
+          mat-button
+        >
+          {{ module.moduleName }}
+        </button>
+      </div>
+    </mat-drawer>
+    <div class="mat-sidenav-content">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button (click)="drawer.toggle()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Welcome - {{ userName }} > {{ selectedModule }}</span>
+          <span class="spacer"></span>
+          <mat-icon>favorite</mat-icon>
+          <!-- <mat-icon>share</mat-icon> -->
+          <button [matMenuTriggerFor]="menu" mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button color="primary" mat-menu-item routerLink="/profile">
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+              </button>
+
+              <button (click)="handleLogOut()" color="primary" mat-menu-item>
+                <mat-icon>login</mat-icon>
+                <span>Logout</span>
+              </button>
+
+              <!-- <button mat-menu-item disabled>
+            <mat-icon>toggle_off</mat-icon>
+            <span>Disable</span>
+          </button> -->
+            </mat-menu>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </mat-drawer-container>
+</div>
+

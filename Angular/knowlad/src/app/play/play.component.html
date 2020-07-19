@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill" class="datepicker-width">
+  <mat-label>Attendance</mat-label>
+  <input [matDatepicker]="picker" [max]="maxDate" [min]="minDate" matInput readonly>
+  <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #picker [dateClass]="dateClass" touchUi></mat-datepicker>
+</mat-form-field>
+<button (click)="picker.open()" mat-raised-button>Open</button>
