@@ -141,7 +141,7 @@ public class DiaryService {
             logger.error("(2)-(b) New Diary Record :: {} ", diary);
 
             logger.error("(3) Save DiaryStudentMappingForDiaryId ");
-            saveDiaryStudentMappingForDiaryId(diaryRecordCheck.get(), diaryStudentModel);
+            saveDiaryStudentMappingForDiaryId(diary, diaryStudentModel);
 
             logger.error("(4) Save/New Record -  Diary & DiaryStudentMapping  - Success ");
             return diary;

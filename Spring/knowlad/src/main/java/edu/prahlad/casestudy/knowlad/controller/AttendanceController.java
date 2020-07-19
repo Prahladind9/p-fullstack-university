@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://192.168.1.1:4200", "http://localhost:4200"})
+@CrossOrigin(origins = {"http://192.168.1.1:4200", "http://localhost:4200", "https://379f0bb118ab.ngrok.io", "https://379f0bb118ab.ngrok.io"})
 @RestController
 @RequestMapping("attendance")
 public class AttendanceController {
