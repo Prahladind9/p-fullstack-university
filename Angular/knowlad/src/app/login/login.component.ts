@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
                 this.isLoading = false;
                 this.loginFormGroup.reset();
                 // todo we'll change to role based later on
-                // this.router.navigate(['Homepage']);
-                this.router.navigate(['ResultTeacher']);
+                this.router.navigate(['Homepage']);
+                // this.router.navigate(['ResultTeacher']);
 
               },
               error => {

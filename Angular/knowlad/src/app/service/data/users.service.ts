@@ -65,9 +65,9 @@ export class UsersService {
 
   getUserName() {
     this.logMethod('getUserName call');
-    // return this.loggedInUser.firstName + ' ' + this.loggedInUser.lastName;
+    return this.loggedInUser.firstName + ' ' + this.loggedInUser.lastName;
     // return 'Student 1';
-    return 'Teacher 1';
+    // return 'Teacher 1';
   }
 
 
@@ -84,7 +84,7 @@ export class UsersService {
 
   setModulesList(modulesListSet: Array<ModulesModel>) {
     this.logMethod('setModulesList >> ModuleList Check for User ' + this.loggedInUser.userName);
-    if (this.loggedInUser.userName === 't') {
+    if (this.loggedInUser.userName === 't' || this.loggedInUser.userName === 't2') {
       for (let i = 0; i < modulesListSet.length; i++) {
         modulesListSet[i].moduleRoutePath = modulesListSet[i].moduleRoutePath + 'Teacher';
       }

@@ -101,7 +101,7 @@ export class DiaryTeacherComponent implements OnInit {
       this.diaryDate.value,
       //todo check this later
       // this.usersService.getUserDetails().facultyDetailsModel.facultyId,
-      1,
+      this.usersService.loggedInUser.userName === 't' ? 1 : 2,
       this.studentStandard.value, 'A', this.homework.value,
       this.isForAllStudents, this.studentIdList, null
     );
