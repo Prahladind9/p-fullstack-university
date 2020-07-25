@@ -1,0 +1,12 @@
+knowlad:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/casestudy?searchpath=know_lad
+        username: know_lad
+        password: know_lad
+        driver: org.postgresql.Driver
+    threadPoolTaskExecutor:
+        maxPoolSize:   5
+        corePoolSize:  3
+        queueCapacity: 10
+    applicationName: knowlad
+    passMarks: 35
