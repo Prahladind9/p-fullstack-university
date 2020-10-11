@@ -1,0 +1,167 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Result</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row size="6" size-sm="8" offset-sm="3" class="ion-text-center" >
+            <ion-col>
+                <ion-item>
+                    <ion-label>Year</ion-label>
+                    <ion-select interface="action-sheet" [formControl]="examTypeControl">
+                        <ion-select-option *ngFor="let year of academicYears" [value]="year.value">
+                            {{year.viewValue}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-label>Exam</ion-label>
+                    <ion-select  interface="action-sheet" [formControl]="examTypeControl">
+                        <ion-select-option *ngFor="let exam of examTypes" [value]="exam.value">
+                            {{exam.viewValue}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-button
+                        expand="block"
+                        color="primary"
+                        (click)="showResultsFlag(); fetchResults()">
+                    MyResults
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!--     Result Table are shown here -->
+    <ion-grid *ngIf="showResults">
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Rank in Class - {{studentResult.overallRank}} </p>
+                        <p> {{studentResult.passed ? 'Passed' : 'Failed' }}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <table [dataSource]="results" class="resultsTable mat-elevation-z8" mat-table>
+                    <!-- Item Column -->
+                    <ng-container matColumnDef="subject">
+                        <th *matHeaderCellDef mat-header-cell> Subject Name</th>
+                        <td *matCellDef="let results" mat-cell> {{results.subject}} </td>
+                        <td *matFooterCellDef mat-footer-cell> Total</td>
+                    </ng-container>
+
+                    <!-- Cost Column -->
+                    <ng-container matColumnDef="marks">
+                        <th *matHeaderCellDef mat-header-cell> Marks per 100</th>
+                        <td *matCellDef="let results" mat-cell> {{results.marks }} </td>
+                        <td *matFooterCellDef mat-footer-cell> {{studentResult.total }} </td>
+                        <!-- <td mat-footer-cell *matFooterCellDef> 10 </td> -->
+                    </ng-container>
+
+                    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+                    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+                    <tr *matFooterRowDef="displayedColumns" mat-footer-row></tr>
+                </table>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!--<ion-grid *ngIf="showResults">
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>>Rank in Class - {{studentResult.overallRank}} </p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p> {{studentResult.passed ? 'Passed' : 'Failed' }}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-label>
+                    <h2>Telugu</h2>
+                </ion-label>
+            </ion-col>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-label>
+                    <p>{{this.studentResult.firstLanguage}}</p>
+                </ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Telugu :: {{this.studentResult.firstLanguage}}</p>
+                    </ion-label>
+                </ion-item>
+
+            </ion-col>
+
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Hindi :: {{this.studentResult.secondLanguage}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>English :: {{this.studentResult.thirdLanguage}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Maths :: {{this.studentResult.maths}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Science :: {{this.studentResult.science}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <p>Social :: {{this.studentResult.social}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-item>
+                    <ion-label>
+                        <h3>Total :: {{this.studentResult.total}}</h3>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>-->
+
+</ion-content>

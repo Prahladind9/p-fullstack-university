@@ -1,0 +1,83 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Attendance Upload</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label>Class</ion-label>
+                    <ion-select interface="popover" [formControl]="studentStandard">
+                        <ion-select-option *ngFor="let section of sections" [value]="section.value">
+                            {{section.viewValue}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-label position="floating">Choose Date</ion-label>
+                <ion-datetime
+                        [min]="minDate.toISOString()"
+                        [max]="maxDate.toISOString()"
+                        [formControl]="attendanceDate"
+                ></ion-datetime>
+            </ion-col>
+            <ion-col>
+                <ion-button
+                        fill="clear"
+                        color="primary"
+                        (click)="getStudentsListAlert()">
+                    Students
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!studentDetailsModelList ||studentDetailsModelList.length <= 0">
+        <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+                <p>Please Select the section</p>
+                <p>or </p>
+                <p>No Students for the given Teacher-Class Mapping, please contact admin</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="studentDetailsModelList  && studentDetailsModelList.length > 0">
+        <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+                <p>The Selected Students are present</p>
+                <p>or </p>
+                <p>The Selected Students are Absent</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="studentDetailsModelList  && studentDetailsModelList.length > 0">
+        <ion-list>
+            <ion-item>
+                <ion-label><strong>Select All</strong></ion-label>
+                <ion-checkbox slot="start"
+                              [(ngModel)]="masterCheck"
+                              [indeterminate]="isIndeterminate"
+                              (click)="checkMaster($event)"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-item *ngFor="let student of studentDetailsModelList">
+                <ion-label>{{student.studentName}}</ion-label>
+                <ion-checkbox slot="start"
+                              [(ngModel)]="student.isPresentStatus"
+                              (ionChange)="checkEvent()"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+        <ion-button
+                fill="clear"
+                color="primary"
+                (click)="saveAttendanceAlert()">
+            Upload
+        </ion-button>
+    </ion-grid>
+
+</ion-content>

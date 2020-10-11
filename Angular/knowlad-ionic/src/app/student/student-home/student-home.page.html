@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Rao High School</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-segment (ionChange)="onFilterUpdate($event)" value="all">
+    <ion-segment-button value="schoolUpdates">School Updates</ion-segment-button>
+    <ion-segment-button value="classUpdates">Class Updates</ion-segment-button>
+  </ion-segment>
+  <!--<ion-grid *ngIf="!schoolUpdates || schoolUpdates.length <= 0 || !classUpdates || classUpdates.length <= 0">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <p>There are no updates right now, please come back later!</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>-->
+<!--  <ion-grid *ngIf="schoolUpdates.length > 0">-->
+  <ion-grid *ngIf="schoolUpdate">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+        <ion-virtual-scroll
+                [items]="schoolUpdates"
+                approxItemHeight="70px"
+        >
+          <ion-item *virtualItem="let update">
+            <ion-label>
+              <p>{{ update.updateText }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-virtual-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="classUpdate">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-virtual-scroll
+                [items]="classUpdates"
+                approxItemHeight="70px"
+        >
+          <ion-item *virtualItem="let update">
+            <ion-label>
+              <p>{{ update.updateText }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-virtual-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
