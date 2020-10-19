@@ -4,6 +4,10 @@ import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  /*{
+    path: '',
+    loadChildren: './menu/menu.module#MenuPageModule'
+  },*/
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthPageModule) },
   {
     path: 'student',

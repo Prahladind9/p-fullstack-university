@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     SDK_KEY = 'cjx2Apa9NC3T2hskh7VTEJN91Jbp9QtfHOWA';
     SDK_SECRET = 'njTFtTortOfGr067CXcN7L8HDplYrUdqmsRe';
 
-    public modulesList: Array<ModulesModel>;
+    // public modulesList: Array<ModulesModel>;
     // private event: Events;
 
     constructor(
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
         this.initializeApp();
         console.log('constructor ' + JSON.stringify(this.authService.modules));
 
-        this.modulesList = this.authService.modules;
+        // this.modulesList = this.authService.modules;
 
         /*this.event.subscribe('userLogged', (data) => {
             this.modulesList = data;
@@ -78,17 +78,7 @@ export class AppComponent implements OnInit {
         });
 
         // this.modulesList = this.authService.modules;
-        console.log(AppComponent.name + ' > Modules List for the user ' + JSON.stringify(this.modulesList));
-    }
-
-    onAbout() {
-        this.authService.logout();
-        this.router.navigateByUrl('/about');
-    }
-
-    onLogout() {
-        this.authService.logout();
-        this.router.navigateByUrl('/auth');
+        // console.log(AppComponent.name + ' > Modules List for the user ' + JSON.stringify(this.modulesList));
     }
 
     async presentToast(text) {

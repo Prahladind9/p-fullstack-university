@@ -1,0 +1,36 @@
+<ion-app>
+    <ion-menu contentId="main-content" side="start">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>
+                    KnowLad
+                </ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-menu-toggle *ngFor="let module of modulesList">
+                    <ion-item lines="none" [routerLink]="module.moduleRoutePath">
+                        <ion-icon [name]="module.moduleIcon" slot="start"></ion-icon>
+                        <ion-label color="primary">{{module.moduleName}}</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+            <ion-list>
+                <ion-menu-toggle>
+                    <ion-item lines="none" (click)="onAbout()" button>
+                        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+                        <ion-label color="primary">About</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item lines="none" (click)="onLogout()" button>
+                        <ion-icon name="exit" slot="start"></ion-icon>
+                        <ion-label color="primary">Logout</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content" main></ion-router-outlet>
+</ion-app>
